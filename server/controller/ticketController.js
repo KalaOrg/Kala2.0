@@ -59,4 +59,11 @@ ticketController.addTicket = (req, res, next) => {
     }
   );
 };
+
+ticketController.removeTickets = (req, res, next) => {
+  const ticketId = req.body._id;
+  // delete ticket
+
+  return next();
+}
 module.exports = ticketController;
