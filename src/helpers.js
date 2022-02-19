@@ -33,3 +33,24 @@ function addTicket(ticket) {
       }
     );
 }
+
+function remove(ticket) {
+  fetch('/api/remove', {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      _id: ticket._id
+    }),
+  })
+    .then((res) => res.json())
+    .then(
+      (result) => {
+        setTickets(result);
+      },
+      (error) => {
+        setStatus('An error occured');
+        console.log(error);
+      }
+    );
+}
+
