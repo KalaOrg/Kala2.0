@@ -60,7 +60,7 @@ ticketController.addTicket = (req, res, next) => {
   );
 };
 
-ticketController.removeTickets = (req, res, next) => {
+ticketController.removeTicket = (req, res, next) => {
   const ticketId = req.body._id;
   // delete ticket
 
