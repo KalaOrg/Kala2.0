@@ -68,8 +68,16 @@ ticketController.addTicket = (req, res, next) => {
 
 ticketController.removeTicket = (req, res, next) => {
   const ticketId = req.body._id;
-  // delete ticket
-
-  return next();
-};
+  const thisQuery = 'DELETE FROM ticket_table WHERE _id = $1'
+  const values = [ticketId];
+  db.query(thisQuery, values)
+  .then((data) => {next()})
+  .catch((err) => {
+    next({
+      log: `ticketController.removeTicket: ERROR: ${err}`,
+      message: {
+        err: 'ticketController.removeTicket: ERROR: Check server logs for details',
+      }});
+  }
+  )};
 module.exports = ticketController;
