@@ -12,21 +12,23 @@ const TicketForm = () => {
     e.preventDefault();
     try{
       const body = {
-        name: enterName, 
+        first_name: enterName, 
         department: department,
-        title: ticketTitle,
-        summary: ticketSummary,
+        issue_title: ticketTitle,
+        issue_summary: ticketSummary,
         priority: priority
       }
-      const meta = {
+      const metaData = {
         method: 'POST',
         headers: {'Content-Type: application/json'},
         body: JSON.stringify(body)
       }
-      const
+      fetch('/add', metaData)
+        .then(data => data.json())
+        .then(tickets => console.log(tickets))//not sure what to do with this after
     }
-    catch{
-
+    catch(err){
+      console.log(err.message);
     }
   }
 
