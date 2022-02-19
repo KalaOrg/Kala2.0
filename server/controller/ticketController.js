@@ -1,22 +1,28 @@
 const fs = require('fs');
 const path = require('path');
 
+const db = require('../model/ticketModel');
+
 const ticketController = {};
 
 ticketController.getTickets = (req, res, next) => {
-  fs.readFile(path.resolve(__dirname, '../data.json'), 'UTF-8', (err, data) => {
-    if (err) {
+  const query =
+    'SELECT tt.first_name, dt.name AS department, tt.issue_title, tt.issue_summary, st.name AS status, pt.name AS priority, tt.date FROM ticket_table AS tt JOIN department_table AS dt ON tt.department=dt._id JOIN status_table AS st ON tt.status=st._id JOIN priority_table AS pt ON tt.priority=pt._id;';
+
+  db.query(query)
+    .then((response) => {
+      console.log(response);
+      res.locals.tickets = response.rows;
+      return next();
+    })
+    .catch((err) => {
       return next({
         log: `ticketController.getTickets: ERROR: ${err}`,
         message: {
           err: 'ticketController.getTickets: ERROR: Check server logs for details',
         },
       });
-    }
-    const parsedData = JSON.parse(data);
-    res.locals.tickets = parsedData;
-    return next();
-  });
+    });
 };
 
 ticketController.addTicket = (req, res, next) => {
@@ -65,5 +71,5 @@ ticketController.removeTicket = (req, res, next) => {
   // delete ticket
 
   return next();
-}
+};
 module.exports = ticketController;
