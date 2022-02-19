@@ -30,6 +30,8 @@ const TicketModal = () => {
             <div class="modal-body">
                 <label for='enterName'>Name</label>
                 <input type='text' value={enterName} onChange={(e => setName(e.target.value))}></input>
+                <label for='enterName'>Department</label>
+                <input type='text' value={enterName} onChange={(e => setName(e.target.value))}></input>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
