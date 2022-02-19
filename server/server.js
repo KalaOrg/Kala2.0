@@ -28,7 +28,6 @@ app.use(express.static(path.resolve(__dirname, '../dist')));
 
 if (process.env.NODE_ENV === 'production') {
   app.get('/', (req, res) => {
-    console.log('hi');
     res.sendFile(path.join(__dirname, './src/index.html'));
   });
 }
