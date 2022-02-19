@@ -3,7 +3,6 @@ require('dotenv').config();
 const cors = require('cors');
 const path = require('path');
 
-console.log(process.env);
 
 // initialize application
 const app = express();
