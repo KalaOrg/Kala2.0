@@ -9,7 +9,8 @@ const Ticket = (props) => {
 
   return(
     <div className='ticket-item'>
-      <Modal />
+
+      {[props.title]}
     </div>
   )
 };
