@@ -9,7 +9,11 @@ router.get('/', ticketController.getTickets, (req, res) => {
   res.status(200).json(res.locals.tickets);
 })
 
-router.post('/add', ticketController.addTicket, (req, res) => {
+router.post('/add', ticketController.addTicket, ticketController.getTickets, (req, res) => {
+  res.status(200).json(res.locals.tickets);
+})
+
+router.post('/remove', ticketController.removeTicket, ticketController.getTickets, (req, res) => {
   res.status(200).json(res.locals.tickets);
 })
 
