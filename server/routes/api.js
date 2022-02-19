@@ -9,4 +9,8 @@ router.get('/', ticketController.getTickets, (req, res) => {
   res.status(200).json(res.locals.tickets);
 })
 
+router.post('/add', ticketController.addTicket, (req, res) => {
+  res.status(200).json(res.locals.tickets);
+})
+
 module.exports = router;
