@@ -30,9 +30,9 @@ ticketController.addTicket = (req, res, next) => {
     department,
     issue_title,
     issue_summary,
-    status,
     priority,
   } = req.body;
+  const status = 1;
   const date = new Date();
 
   const query =
