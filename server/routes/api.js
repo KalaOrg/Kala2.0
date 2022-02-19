@@ -13,4 +13,8 @@ router.post('/add', ticketController.addTicket, ticketController.getTickets, (re
   res.status(200).json(res.locals.tickets);
 })
 
+router.post('/remove', ticketController.removeTicket, ticketController.getTickets, (req, res) => {
+  res.status(200).json(res.locals.tickets);
+})
+
 module.exports = router;
