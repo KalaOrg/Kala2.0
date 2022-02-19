@@ -1,49 +1,70 @@
 import React, { useEffect, useState } from 'react'
 
-const TicketModal = () => {
+const TicketForm = () => {
   //states
-  [enterName, setName] = useState('');
-  [department, setDepartment] = useState(''); //from dropdown
-  [ticketTitle, setTicketTitle] = useState('');
-  [ticketSummary, setTicketSummary] = useState('');
-  [priority, setPriority] = useState('')
+  const [enterName, setName] = useState('');
+  const [department, setDepartment] = useState(''); //from dropdown
+  const [ticketTitle, setTicketTitle] = useState('');
+  const [ticketSummary, setTicketSummary] = useState('');
+  const [priority, setPriority] = useState('')
+
+  const submitTicket = (e) => {
+    e.preventDefault();
+    try{
+      const body = {
+        name: enterName, 
+        department: department,
+        title: ticketTitle,
+        summary: ticketSummary,
+        priority: priority
+      }
+      const meta = {
+        method: 'POST',
+        headers: {'Content-Type: application/json'},
+        body: JSON.stringify(body)
+      }
+      const
+    }
+    catch{
+
+    }
+  }
 
   return (
     <div>
-    {/* <!-- Button trigger modal --> */}
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-      New Ticket Entry
-    </button>
-    
-    {/* <!-- Modal --> */}
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-         
-          <form>
-            <div class="modal-body">
-                <label for='enterName'>Name</label>
-                <input type='text' value={enterName} onChange={(e => setName(e.target.value))}></input>
-                <label for='enterName'>Department</label>
-                <input type='text' value={enterName} onChange={(e => setName(e.target.value))}></input>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </form>
-
+      <h2>Ticket Entry Form</h2>
+      <form onSubmit={submitTicket}>
+        <div>
+          <label htmlFor='enter-name'>Name</label>
+          <input type='text' value={enterName} onChange={(e => setName(e.target.value))}></input>
         </div>
-      </div>
+        <div>
+          <label htmlFor='enter-department'>Department</label>
+            <select onChange={(e => setDepartment(e.target.value))}>
+              <option value='1'>Software Engineering</option>
+              <option value='2'>Facilities</option>
+              <option value='3'>Marketing</option>
+            </select>
+        </div>
+        <div>
+          <h3>Ticket</h3>
+          <label htmlFor='enter-ticket-title'>Title</label>
+          <input type='text' value={ticketTitle} onChange={(e => setTicketTitle(e.target.value))}></input>
+          <br></br>
+          <label htmlFor='enter-ticket-summary'>Summary</label>
+          <input type='text' value={ticketSummary} onChange={(e => setTicketSummary(e.target.value))}></input>
+        </div>
+        <div>
+          <label htmlFor='enter-priority'>Priority</label>
+            <select onChange={(e => setPriority(e.target.value))}>
+              <option value='1'>Software Engineering</option>
+              <option value='2'>Facilities</option>
+              <option value='3'>Marketing</option>
+            </select>
+        </div>
+      </form>
     </div>
-  </div>
   )
 }
 
-export default TicketModal;
+export default TicketForm;
