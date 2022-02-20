@@ -6,7 +6,6 @@ const Header = (props) => {
     return (
       <div>
         <LogoHeader/>
-        <TicketEntryButton/>
       </div>
     )
 }

@@ -1,0 +1,13 @@
+#logo{
+    height:10vh
+}
+
+#navBar{
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #ACC4B0 !important;
+}
+
+button{
+    margin: 10px;
+}
