@@ -1,6 +1,4 @@
-//import { database } from 'pg/lib/defaults';
 import React, { useEffect, useState } from 'react';
-//import { ProgressPlugin } from 'webpack';
 import TicketColumn from '../components/ticketColumns'
 
 const TicketContainer = (props) => {

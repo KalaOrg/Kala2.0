@@ -7,10 +7,10 @@ const TicketColumn = (props) => {
   const ticketItems = [];
   for (let i = 0; i < tickets.length; i++) {
     // console.log('TICKETS LENGTH:', tickets.length);
-    console.log('TICKETS:', tickets);
+    // console.log('TICKETS:', tickets);
     ticketItems.push(<Ticket key={i} ticket={tickets[i]} />);
-    console.log('TICKETS[i]:', tickets[i]);
-    console.log('TICKET ITEMS:', ticketItems);
+    // console.log('TICKETS[i]:', tickets[i]);
+    // console.log('TICKET ITEMS:', ticketItems);
   }
 
   //  const filteredTickets = ticketItems.filter(
