@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom'
 import Header from './containers/headerContainer';
 import TicketContainer from './containers/ticketsContainer'
-//import '/index.css'
+import './style.css'
 
 const App = () => {
   return ( 
