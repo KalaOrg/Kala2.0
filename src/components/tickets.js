@@ -14,11 +14,11 @@ const Ticket = (props) => {
         <div>
           <h3>{props.ticket.issue_title}</h3>
         </div>
-        <button>X</button>
+        
       </div>
       <div>
         <ul className='ticketDetailList'>
-          {console.log('PROPS:', props)}
+          {/* {console.log('PROPS:', props)} */}
           <li className='ticketDetail'>Name: {props.ticket.first_name}</li>
           <li className='ticketDetail'>Summary: {props.ticket.issue_summary}</li>
           <li className='ticketDetail'>Department: {props.ticket.department}</li>
