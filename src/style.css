@@ -8,6 +8,16 @@
     background-color: #ACC4B0 !important;
 }
 
-button{
+#navBar button{
     margin: 10px;
 }
+
+#submit-ticket{
+    text-align: right;
+}
+
+#form-container{
+    width: 50%;
+    padding-top: 20px
+}
+

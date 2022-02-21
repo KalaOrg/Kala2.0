@@ -20,23 +20,29 @@ const TicketForm = (props) => {
       }
       const metaData = {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: {"Content-Type": "application/json"},
         body: JSON.stringify(body)
       }
-      fetch('/add', metaData)
+      fetch('/api/add', metaData)
         .then(data => data.json())
-        .then(tickets => props.setTickets(tickets))//** may have to revise based on hook names **
+        .then(tickets => console.log(tickets))//** may have to revise based on hook names **
     }
+    // props.setTickets(tickets)
     catch(err){
       console.log(err.message);
     }
+    setName('');
+    setDepartment('');
+    setTicketTitle('');
+    setTicketSummary('');
+    setPriority('');
   }
 
   return (
     <div className='container' id='form-container'>
       <h2>Ticket Entry Form</h2>
       <form onSubmit={submitTicket}>
-        <div className="form-row">
+        <div>
           <div className="form-group col-md-5">
             <label htmlFor='enter-name'>Name</label>
             <br></br>
@@ -47,34 +53,39 @@ const TicketForm = (props) => {
             <label htmlFor='enter-department'>Department</label>
             <br></br>
               <select className="form-control" required onChange={(e => setDepartment(e.target.value))}>
-                <option selected disabled value="">Choose a department</option>
-                <option value='1'>Software Engineering</option>
-                <option value='2'>Facilities</option>
-                <option value='3'>Marketing</option>
+                <option value="">Choose a department</option>
+                <option value='2'>Software Engineering</option>
+                <option value='3'>Facilities</option>
+                <option value='1'>Marketing</option>
               </select>
           </div>
         </div>
         <br></br>
         <div>
           <h3>Ticket</h3>
-          <label htmlFor='enter-ticket-title'>Title</label>
-          <br></br>
-          <input type='text' className="form-control" required value={ticketTitle} onChange={(e => setTicketTitle(e.target.value))}></input>
+          <div className="form-group col-md-6">
+            <label htmlFor='enter-ticket-title'>Title</label>
+            <br></br>
+            <input type='text' className="form-control" required value={ticketTitle} onChange={(e => setTicketTitle(e.target.value))}></input>
+          </div>
           <br></br>
           <label htmlFor='enter-ticket-summary'>Summary</label>
           <br></br>
           <textarea type='text' className="form-control" required value={ticketSummary} onChange={(e => setTicketSummary(e.target.value))}></textarea>
         </div>
         <br></br>
-        <div>
+        <div className="form-group col-md-5">
           <label htmlFor='enter-priority'>Priority </label>
           <br></br>
             <select className='form-control' required onChange={(e => setPriority(e.target.value))}>
-              <option selected disabled value="">Choose a priority</option>
+              <option value="">Choose a priority</option>
               <option value='1'>Low</option>
               <option value='2'>Medium</option>
               <option value='3'>High</option>
             </select>
+        </div>
+        <div id='submit-ticket'>
+          <button id='submit-ticket-button'className='btn btn-success'>Create ticket</button>
         </div>
       </form>
     </div>
