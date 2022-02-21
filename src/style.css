@@ -1,0 +1,23 @@
+#logo{
+    height:10vh
+}
+
+#navBar{
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #ACC4B0 !important;
+}
+
+#navBar button{
+    margin: 10px;
+}
+
+#submit-ticket{
+    text-align: right;
+}
+
+#form-container{
+    width: 50%;
+    padding-top: 20px
+}
+
