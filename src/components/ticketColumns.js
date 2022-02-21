@@ -62,7 +62,6 @@ const TicketColumn = (props) => {
     <div>
       <div id={props.priority}>
         {ticketItems}
-        <p>hey there</p>
       </div>
     </div>
   );
