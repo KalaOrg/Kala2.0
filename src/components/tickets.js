@@ -12,20 +12,19 @@ const Ticket = (props) => {
     <article>
       <div className='ticketHead'>
         <div>
-          <h3>{props.issue_title}</h3>
-          <h3>Issue Title Here</h3>
+          <h3>{props.ticket.issue_title}</h3>
         </div>
         <button>X</button>
       </div>
       <div>
         <ul className='ticketDetailList'>
-          {/* {console.log('props:', props)} */}
-          <li className='ticketDetail'>Summary: {props.issue_summary}</li>
-          <li className='ticketDetail'>Name: {props.first_name}</li>
-          <li className='ticketDetail'>Department: {props.department}</li>
-          <li className='ticketDetail'>Priority: {props.priority}</li>
-          <li className='ticketDetail'>Status: {props.status}</li>
-          <li className='ticketDetail'>Date: {props.date}</li>
+          {console.log('PROPS:', props)}
+          <li className='ticketDetail'>Name: {props.ticket.first_name}</li>
+          <li className='ticketDetail'>Summary: {props.ticket.issue_summary}</li>
+          <li className='ticketDetail'>Department: {props.ticket.department}</li>
+          <li className='ticketDetail'>Priority: {props.ticket.priority}</li>
+          <li className='ticketDetail'>Status: {props.ticket.status}</li>
+          <li className='ticketDetail'>Date: {props.ticket.date}</li>
         </ul>
       </div>
     </article>

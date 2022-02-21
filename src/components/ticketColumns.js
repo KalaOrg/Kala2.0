@@ -14,12 +14,25 @@ const TicketColumn = (props) => {
   //     priority: data.priority,
   //     time: data.time,
   //   },
-  
+
+  //attempt to put the ticket items into a function but is resulting in ticketItems not found
+  // const ticketItems = [];
+  // const populateTickets = (tickets) => {
+  //   for (let i = 0; i < tickets.length; i++) {
+  //     console.log('TICKETS LENGTH:', tickets.length);
+  //     console.log('TICKETS:', tickets);
+  //     ticketItems.push(<Ticket key={i} ticket={tickets[i]} />);
+  //     console.log('TICKET ITEMS:', ticketItems);
+  //   }
+  //   return ticketItems;
+  // }
+
   const ticketItems = [];
   for (let i = 0; i < tickets.length; i++) {
     console.log('TICKETS LENGTH:', tickets.length);
     console.log('TICKETS:', tickets)
     ticketItems.push(<Ticket key={i} ticket={tickets[i]} />);
+    console.log('TICKETS[i]:', tickets[i])
     console.log('TICKET ITEMS:', ticketItems)
   }
 
@@ -42,13 +55,12 @@ const TicketColumn = (props) => {
 
   useEffect(() => {
     fetchTickets();
+    //populateTickets(tickets);
   }, []);
 
   return (
     <div>
       <div id={props.priority}>
-        {/* {console.log('tickets:', tickets)}
-        {console.log('ticket items:', ticketItems)} */}
         {ticketItems}
         <p>hey there</p>
       </div>
