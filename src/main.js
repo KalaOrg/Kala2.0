@@ -1,8 +1,9 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Header from './containers/headerContainer';
-import TicketContainer from './containers/ticketsContainer'
+import TicketContainer from './containers/ticketsContainer';
+import TicketForm from './components/modal';
 import './style.css'
 
 
@@ -11,7 +12,13 @@ const App = () => {
     <div>
     <h1>Hello</h1>
     <Header />
-    <TicketContainer />
+    <Routes>
+      <Route exact path='/form' element={<TicketForm/>}></Route>
+    </Routes>
+    {/* <Routes>
+      <Route exact path='/form' element={<TicketContainer/>}>
+      </Route>
+    </Routes> */}
     </div>
   )
 }
