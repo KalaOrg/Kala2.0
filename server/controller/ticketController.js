@@ -66,6 +66,7 @@ ticketController.removeTicket = (req, res, next) => {
   const ticketId = req.body._id;
   const thisQuery = 'DELETE FROM ticket_table WHERE _id = $1';
   const values = [ticketId];
+  console.log('REQ BODY ID:', req.body._id)
   db.query(thisQuery, values)
     .then((data) => {
       next();

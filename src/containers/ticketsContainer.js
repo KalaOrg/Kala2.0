@@ -11,13 +11,13 @@ const TicketContainer = (props) => {
 
   return (
     <div className='ticket-list'>
-      <div id='high-priority'>
+      <div className='columns' id='high-priority'>
         <TicketColumn priority='high' />
       </div>
-      <div id='medium-priority'>
+      <div className='columns' id='medium-priority'>
         <TicketColumn priority='medium' />
       </div>
-      <div id='low-priority'>
+      <div className='columns' id='low-priority'>
         <TicketColumn priority='low' />
       </div>
     </div>

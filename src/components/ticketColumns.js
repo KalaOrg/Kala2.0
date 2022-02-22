@@ -8,7 +8,15 @@ const TicketColumn = (props) => {
   for (let i = 0; i < tickets.length; i++) {
     // console.log('TICKETS LENGTH:', tickets.length);
     // console.log('TICKETS:', tickets);
-    ticketItems.push(<Ticket key={i} ticket={tickets[i]} />);
+    ticketItems.push(
+      <Ticket
+        key={i}
+        ticketID={tickets[i]._id}
+        ticket={tickets[i]}
+        setTickets={setTickets}
+        tickets={tickets}
+      />
+    );
     // console.log('TICKETS[i]:', tickets[i]);
     // console.log('TICKET ITEMS:', ticketItems);
   }
@@ -36,37 +44,30 @@ const TicketColumn = (props) => {
     // filterTickets(ticketItems);
   }, []);
 
-  
-  //this successfully filters all of the tickets in our ticketItems array into a new array based on its priority 
-  const highPriority = ticketItems.filter(ticket => ticket.props.ticket.priority === 'high');
-  const mediumPriority = ticketItems.filter(ticket => ticket.props.ticket.priority === 'medium');
-  const lowPriority = ticketItems.filter(ticket => ticket.props.ticket.priority === 'low');
+  //this successfully filters all of the tickets in our ticketItems array into a new array based on its priority
+  const highPriority = ticketItems.filter(
+    (ticket) => ticket.props.ticket.priority === 'high'
+  );
+  const mediumPriority = ticketItems.filter(
+    (ticket) => ticket.props.ticket.priority === 'medium'
+  );
+  const lowPriority = ticketItems.filter(
+    (ticket) => ticket.props.ticket.priority === 'low'
+  );
   // console.log('HIGH:', highPriority);
   // console.log('MEDIUM:', mediumPriority);
   // console.log('LOW:', lowPriority);
 
   if (props.priority === 'high') {
-    return (
-      <div id={props.priority}>
-        {highPriority}
-      </div>
-    )
+    return <div id={props.priority}>{highPriority}</div>;
   }
   if (props.priority === 'medium') {
-    return (
-      <div id={props.priority}>
-        {mediumPriority}
-      </div>
-    )
+    return <div id={props.priority}>{mediumPriority}</div>;
   }
   if (props.priority === 'low') {
-    return (
-      <div id={props.priority}>
-        {lowPriority}
-      </div>
-    )
+    return <div id={props.priority}>{lowPriority}</div>;
   }
-  
+
   //original return statement with different appraoches to filtering without a conditional return statement
   // return (
   //   <div>
@@ -79,7 +80,6 @@ const TicketColumn = (props) => {
   //     </div>
   //   </div>
   // );
-
 };
 
 export default TicketColumn;
