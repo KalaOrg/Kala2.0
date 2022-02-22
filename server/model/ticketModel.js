@@ -1,20 +1,24 @@
 const { Pool } = require('pg');
 
-const PG_URI = 'postgres://kczfawhr:eZaID_V87sos32FnYX4_CNmwh8srUPKY@jelani.db.elephantsql.com/kczfawhr';
+
+const PG_URI = process.env.NODE_ENV === 'test' 
+? 'postgres://nwnaxssy:0nNwwEItIdpg8c1eBjzTNarTzg7Y24gU@jelani.db.elephantsql.com/nwnaxssy'
+: 'postgres://kczfawhr:eZaID_V87sos32FnYX4_CNmwh8srUPKY@jelani.db.elephantsql.com/kczfawhr';
+
 
 // create a new pool here using the connection string above
 const pool = new Pool({
   connectionString: PG_URI
 });
 
-// connection of database with the following schema: 
+// // connection of database with the following schema: 
 // CREATE TABLE ticket_Table (
 //   _id       SERIAL PRIMARY KEY,
 //   first_name     VARCHAR(50),
-//   department_id     INTEGER REFERENCES department_table(_id),
+//   department_id  INTEGER, REFERENCES department_table(_id),
 //   issue_title   VARCHAR(75),
 //   issue_summary  VARCHAR(500),
-//   status _id      INTEGER REFERENCES status_table(_id)
+//   status_id      INTEGER REFERENCES status_table(_id)
 //   priority_id       INTEGER REFERENCES priority_table(_id),
 //   date           TIMESTAMPTZ
 // );
