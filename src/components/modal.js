@@ -37,7 +37,7 @@ const TicketForm = (props) => {
     setTicketTitle('');
     setTicketSummary('');
     setPriority('');
-    // history.push('/dashboard')
+    location.assign('/')
   }
 
   return (
