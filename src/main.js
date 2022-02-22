@@ -10,15 +10,11 @@ import './style.css'
 const App = () => {
   return ( 
     <div>
-    <h1>Hello</h1>
     <Header />
     <Routes>
+      <Route exact path='/' element={<TicketContainer/>}></Route>
       <Route exact path='/form' element={<TicketForm/>}></Route>
     </Routes>
-    {/* <Routes>
-      <Route exact path='/form' element={<TicketContainer/>}>
-      </Route>
-    </Routes> */}
     </div>
   )
 }

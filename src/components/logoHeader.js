@@ -7,7 +7,7 @@ const LogoHeader = () => {
     return (
       <nav className="navbar navbar-light navbar-expand-md bg-primary navbar-fixed-top" id='navBar'>
         <div className="navbar-brand ms-auto">
-          <Link to='/dashboard'><img id='logo' alt='logo' src={logo}/></Link>
+          <Link to='/'><img id='logo' alt='logo' src={logo}/></Link>
         </div>
         <div className="nav navbar-nav ml-auto w-100 justify-content-end">
           <Link to="/form">
