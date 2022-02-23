@@ -9,9 +9,6 @@ const TicketForm = (props) => {
   const [ticketSummary, setTicketSummary] = useState('');
   const [priority, setPriority] = useState('');
 
-  const arrOfName = api.get(/users)
-
-  console.log(new Date() );
   const submitTicket = (e) => {
     e.preventDefault();
     try{
