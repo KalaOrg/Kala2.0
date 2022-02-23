@@ -9,6 +9,7 @@ router.get('/', ticketController.getTickets, (req, res) => {
   res.status(200).json(res.locals.tickets);
 });
 
+
 router.post(
   '/add',
   ticketController.addTicket,
@@ -26,5 +27,6 @@ router.delete(
     res.status(200).json(res.locals.tickets);
   }
 );
+
 
 module.exports = router;
