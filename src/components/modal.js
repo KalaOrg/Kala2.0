@@ -7,7 +7,7 @@ const TicketForm = (props) => {
   const [department, setDepartment] = useState(''); //from dropdown
   const [ticketTitle, setTicketTitle] = useState('');
   const [ticketSummary, setTicketSummary] = useState('');
-  const [priority, setPriority] = useState('')
+  const [priority, setPriority] = useState('');
 
   const submitTicket = (e) => {
     e.preventDefault();
@@ -59,6 +59,7 @@ const TicketForm = (props) => {
                 <option value='2'>Software Engineering</option>
                 <option value='3'>Facilities</option>
                 <option value='1'>Marketing</option>
+                <option value='4'>Another dep</option>
               </select>
           </div>
         </div>
