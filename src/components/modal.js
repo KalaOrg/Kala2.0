@@ -3,6 +3,7 @@ import {Link, withRouter} from 'react-router-dom'
 
 const TicketForm = (props) => {
   //states
+  //console.log('hi')
   const [enterName, setName] = useState('');
   const [department, setDepartment] = useState(''); //from dropdown
   const [ticketTitle, setTicketTitle] = useState('');
