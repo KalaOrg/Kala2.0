@@ -80,4 +80,28 @@ ticketController.removeTicket = (req, res, next) => {
       });
     });
 };
+
+
+ticketController.getFilteredTickets = async (req, res, next) => {
+  try {
+    const { user_id, status } = req.body;
+    const query = 'SELECT tt._id, tt.issue_title, tt.issue_summary, tt.date, pt.name AS priority, users.userName, dt.name AS department, st.name AS status FROM ticket_table AS tt JOIN priority_table AS pt ON pt._id = tt.priority_id JOIN users ON users._id = tt.user_id JOIN department_table AS dt ON dt._id = tt.department_id JOIN status_table AS st ON st._id = tt.status_id WHERE tt.user_id = $1 AND tt.status_id = $2';
+    const resultFilteredTickets =await db.query(query,[user_id,status]);
+    res.locals.result = {};
+    res.locals.result.STATUS = true;
+    res.locals.result.filteredTickets = [];
+    resultFilteredTickets.rows.map(ticket=>res.locals.result.filteredTickets.push(ticket));
+    next();
+
+  } catch (err) {
+    return next({
+      log: `ticketController.getFilteredTickets: ERROR: ${err}`,
+      message: {
+        err: 'ticketController.getFilteredTickets: ERROR: Check server logs for details',
+      },
+    });
+  }
+};
+
+
 module.exports = ticketController;
