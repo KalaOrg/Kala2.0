@@ -2,9 +2,11 @@ const { Pool } = require('pg');
 
 //isabelle was here :)
 
-const PG_URI = process.env.NODE_ENV === 'test' 
-? 'postgres://nwnaxssy:0nNwwEItIdpg8c1eBjzTNarTzg7Y24gU@jelani.db.elephantsql.com/nwnaxssy'
-: 'postgres://kczfawhr:eZaID_V87sos32FnYX4_CNmwh8srUPKY@jelani.db.elephantsql.com/kczfawhr';
+// const PG_URI = process.env.NODE_ENV === 'test' 
+// ? 'postgres://nwnaxssy:0nNwwEItIdpg8c1eBjzTNarTzg7Y24gU@jelani.db.elephantsql.com/nwnaxssy'
+// : 'postgres://kczfawhr:eZaID_V87sos32FnYX4_CNmwh8srUPKY@jelani.db.elephantsql.com/kczfawhr';
+
+const PG_URI = 'postgres://pfdhvqbs:Otv42mvFX2kGJSiHOfNWF2qINBAmjIRT@jelani.db.elephantsql.com/pfdhvqbs';
 
 
 // create a new pool here using the connection string above
