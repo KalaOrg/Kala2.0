@@ -37,8 +37,8 @@ function LoginForm( { setToken }) {
     })
     .then(data => {
       console.log('DATA ', data);
-      const token = data;
-      setToken(token);
+      // const token = data;
+      setToken(data);
     })
     .catch(err => {
     return next({
@@ -48,6 +48,7 @@ function LoginForm( { setToken }) {
     }) 
    }); //if field is bad or cannot get data
 
+  }
   return (
     // Old code with useForm hook
     // <div>
@@ -71,9 +72,8 @@ function LoginForm( { setToken }) {
         </div>
       </form>
     </div>
-
     );
-  }    
+      
 };
 
 //??????
