@@ -1,16 +1,14 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import {Link, withRouter} from 'react-router-dom'
 
-
 const TicketForm = (props) => {
   //states
-  const [usernames, setUserName] = useState([]);
   const [enterName, setName] = useState('');
   const [department, setDepartment] = useState(''); //from dropdown
   const [ticketTitle, setTicketTitle] = useState('');
   const [ticketSummary, setTicketSummary] = useState('');
   const [priority, setPriority] = useState('');
+
 
 
   const arrOfUser = [];
@@ -53,7 +51,7 @@ const TicketForm = (props) => {
       }
       fetch('/api/add', metaData)
         .then(data => data.json())
-        .then(tickets => console.log('This is working thou'+tickets))//** may have to revise based on hook names **
+        .then(tickets => console.log(tickets))//** may have to revise based on hook names **
     }
     // props.setTickets(tickets)
     catch(err){
@@ -72,14 +70,6 @@ const TicketForm = (props) => {
       <h2>Ticket Entry Form</h2>
       <form onSubmit={submitTicket}>
         <div>
-        <div className="form-group col-md-5">
-            <label htmlFor='enter-department'>Enter name</label>
-            <br></br>
-              <select className="form-control" required onChange={(e => setDepartment(e.target.value))}>
-                <option value="">Choose User</option>
-                {arrOfUser}
-              </select>
-          </div>
           <div className="form-group col-md-5">
             <label htmlFor='enter-name'>Name</label>
             <br></br>

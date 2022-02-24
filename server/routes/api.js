@@ -11,6 +11,25 @@ router.get('/test', (req, res) => res.json({ msg: 'backend works' }));
 // });
 
 
+// router.post(
+//   '/add',
+//   ticketController.addTicket,
+//   ticketController.getTickets,
+//   (req, res) => {
+//     res.status(200).json(res.locals.tickets);
+//   }
+// );
+
+// router.delete(
+//   '/remove',
+//   ticketController.removeTicket,
+//   ticketController.getTickets,
+//   (req, res) => {
+//     res.status(200).json(res.locals.tickets);
+//   }
+// );
+
+
 router.post(
   '/addticket',
   ticketController.addTicket,
@@ -30,6 +49,7 @@ router.delete(
     return res.status(200).json("Ticket deleted");
   }
 );
+
 
 
 router.post('/login',userController.loginUser, (req,res)=>{

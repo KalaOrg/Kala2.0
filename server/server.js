@@ -12,10 +12,7 @@ const apiRouter = require('./routes/api.js');
 const app = express();
 
 // set up CORS for Cross-Origin-Resource-Sharing
-app.use(cors({
-  credentials: true,
-  origin: "http://localhost:8080"
-}));
+app.use(cors());
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', 'locahost:3000');
   res.header(

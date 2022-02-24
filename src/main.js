@@ -28,6 +28,15 @@ import { createBrowserHistory } from 'history'
   //changed Routes to BrowserRouter on lines 35 and 42.  Added Switch to 36 and 41
 
 const App = () => {
+
+//   return ( 
+//     <div>
+//     <Header />
+//     <Routes>
+//       <Route exact path='/' element={<TicketContainer/>}></Route>
+//       <Route exact path='/form' element={<TicketForm/>}></Route>
+//     </Routes>
+
   const newHistory = createBrowserHistory();
   const [token, setToken] = useState();
 
