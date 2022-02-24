@@ -12,13 +12,16 @@ import './style.css'
 
 
 const App = () => {
-  return ( 
+  return (
     <div>
+
     <Header />
     <Routes>
       <Route exact path='/' element={<UserContainer/>}></Route>
       <Route exact path='/form' element={<TicketForm/>}></Route>
     </Routes>
+
+      <TicketForm />
     </div>
   )
 }
