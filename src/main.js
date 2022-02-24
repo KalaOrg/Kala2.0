@@ -46,12 +46,14 @@ const App = () => {
 
   return ( 
     <div>
+      {/* <TicketForm/> */}
+    <UserContainer/>
     <Header />
-//     <Routes>
+{/* //     <Routes>
 //       <Route exact path='/' element={<UserContainer/>}></Route>
 //       <Route exact path='/form' element={<TicketForm/>}></Route>
-//     </Routes>
-    <LoginForm />
+//     </Routes> */}
+    {/* <LoginForm /> */}
     {/* change to router and add switch*/}
     {/* <BrowserRouter history={newHistory}>
       <Switch>

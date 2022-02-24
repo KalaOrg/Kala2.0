@@ -3,6 +3,7 @@ import {Link, withRouter} from 'react-router-dom'
 
 const TicketForm = (props) => {
   //states
+  const [usernames, setUserName] = useState([]);
   const [enterName, setName] = useState('');
   const [department, setDepartment] = useState(''); //from dropdown
   const [ticketTitle, setTicketTitle] = useState('');
@@ -15,24 +16,24 @@ const TicketForm = (props) => {
 
   usernames.map((userName,id)=>arrOfUser.push(<option key={id} value={userName}>{userName}</option>))
 
-  useEffect(()=>{
-    const metaData = {
-      method: 'GET',
-      headers: {"Content-Type": "application/json"},
-    }
-    fetch('/api/usernames', metaData)
-        .then(data => data.json())
-        .then(result => {
-          // console.log(result.userNames)
-          setUserName([...result.userNames]);
-        })
-        // axios.get('http://localhost:3000/api/usernames',{
-        //   withCredentials: false
-        // })
-        // .then(result=>{
-        //   console.log(result);
-        // }).catch(err=>console.log('Cant get data, here is error: ', err ));
-  });
+  // useEffect(()=>{
+  //   const metaData = {
+  //     method: 'GET',
+  //     headers: {"Content-Type": "application/json"},
+  //   }
+  //   fetch('/api/usernames', metaData)
+  //       .then(data => data.json())
+  //       .then(result => {
+  //         // console.log(result.userNames)
+  //         setUserName([...result.userNames]);
+  //       })
+  //       // axios.get('http://localhost:3000/api/usernames',{
+  //       //   withCredentials: false
+  //       // })
+  //       // .then(result=>{
+  //       //   console.log(result);
+  //       // }).catch(err=>console.log('Cant get data, here is error: ', err ));
+  // });
 
   const submitTicket = (e) => {
     e.preventDefault();
