@@ -3,10 +3,10 @@ import LogoHeader from '../components/logoHeader';
 import TicketEntryButton from '../components/entryButton';
 
 
-const Header = (props) => {
+const Header = ({ setToken }) => {
     return (
       <div>
-        <LogoHeader/>
+        <LogoHeader setToken={setToken}/>
       </div>
     )
 }

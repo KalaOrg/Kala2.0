@@ -23,7 +23,7 @@ const App = () => {
   }, [token]);
 
 
-  if (!token) {
+  if (!token || token.STATUS === false) {
     return (
       <div>
         <img id='logo' alt='logo' src={logo}/>
@@ -34,12 +34,9 @@ const App = () => {
 
   return (
     <div>
-      <Context.Provider value={user_id} >
-        <Header />
-        <UserContainer id={user_id} />
-        <TicketForm />
-      </Context.Provider>
-
+      <Header setToken={setToken}/>
+      <UserContainer />
+      <TicketForm />
     </div>
   )
 }
