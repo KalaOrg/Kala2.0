@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import UserTicketColumn from '../components/userTicketColumn'
+import React, { useEffect, useState } from "react";
+import UserTicketColumn from "../components/userTicketColumn";
 
 /* USER CONTAINER
   *LIST TICKETS BY STATUS - RECEIVED, IN PROGRESS, COMPLETED
@@ -8,21 +8,37 @@ import UserTicketColumn from '../components/userTicketColumn'
   *INSIDE COMPLETED TICKETS, DISPLAY ALL COMPLETED TICKETS IN THE ORDER THEY WERE FINISHED
 
 */
-const UserContainer = (props) => {
 
+const Columns = () => (
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(3, 1fr)",
+      gridGap: 20,
+    }}
+  >
+    <div>RECEIVED</div>
+    <div>IN PROGRESS</div>
+    <div>COMPLETED</div>
+  </div>
+);
+
+const UserContainer = (props) => {
+  const id = localStorage.getItem("id");
   return (
-    <div className='user-ticket-list'>
-      <div className='columns' id='received-status'>
-        <UserTicketColumn status='received' />
+    <div className="ticket-list">
+      <div className="columns">
+        <h3>Received</h3>
+        <UserTicketColumn id={id} status={1} />
       </div>
-      <div className='columns' id='inProgress-status'>
-        <UserTicketColumn status='in_progress' />
+      <div className="columns">
+        <UserTicketColumn id={id} status={2} />
       </div>
-      <div className='columns' id='completed-status'>
-        <UserTicketColumn status='completed' />
+      <div className="columns">
+        <UserTicketColumn id={id} status={3} />
       </div>
     </div>
   );
-}
+};
 
 export default UserContainer;

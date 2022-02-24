@@ -6,6 +6,7 @@ const UserTicketColumn = (props) => {
 
   const ticketItems = [];
   for (let i = 0; i < tickets.length; i++) {
+    console.log('Are we creating tickets')
     // console.log('TICKETS LENGTH:', tickets.length);
     // console.log('TICKETS:', tickets);
     ticketItems.push(
@@ -33,16 +34,43 @@ const UserTicketColumn = (props) => {
   // };
 
   const fetchTickets = () => {
-    fetch('/api')
+    console.log('In fetch request')
+    fetch('/api/filteredtickets',{
+      method : 'POST',
+      headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: JSON.stringify({user_id : 2, status : props.status})
+    })
       .then((res) => res.json())
-      .then((tickets) => setTickets(tickets))
+      .then((tickets) => {
+        console.log('WE are getting tickets')
+        console.log(tickets);
+        setTickets([...tickets.filteredTickets])
+      })
       .catch((err) => console.log('Error getting tickets.', err));
   };
 
   useEffect(() => {
+    console.log('In use effect')
     fetchTickets();
     // filterTickets(ticketItems);
   }, []);
+
+  return (
+    <div>
+      <div>
+      {ticketItems.filter((ticket) => ticket.props.ticket.status === 'received')}
+    </div>
+    <div>
+      {ticketItems.filter((ticket) => ticket.props.ticket.status === 'in_progress')}
+    </div>
+    <div>
+      {ticketItems.filter((ticket) => ticket.props.ticket.status === 'completed')}
+    </div>
+    </div>
+  );
 
   //this successfully filters all of the tickets in our ticketItems array into a new array based on its priority
   const received = ticketItems.filter(

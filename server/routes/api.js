@@ -36,7 +36,7 @@ router.get('/usernames',userController.getUsers,(req,res)=>{
   return res.status(200).json(res.locals.result);
 });
 
-router.get('/filteredtickets', ticketController.getFilteredTickets, (req,res)=>{
+router.post('/filteredtickets', ticketController.getFilteredTickets, (req,res)=>{
   return res.status(200).json(res.locals.result);
 });
 
