@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 const Ticket = (props) => {
-  //const { _id, first_name, department, issue_title, issue_summary, status, priority, date } = state.props
-
-  // useEffect(() => {});
 
   const handleDelete = () => {
     console.log('THIS IS THE ID', props.ticketID)

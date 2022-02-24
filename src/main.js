@@ -2,11 +2,8 @@ import ReactDOM from 'react-dom';
 import React, { useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Header from './containers/headerContainer';
-// import TicketContainer from './containers/ticketsContainer';
-// import TicketForm from './components/modal';
 import UserContainer from './containers/userContainer';
 import './style.css'
-//import login form
 import LoginForm from './components/loginPage';
 import { createBrowserHistory } from 'history'
 import useToken from './components/useToken.js'

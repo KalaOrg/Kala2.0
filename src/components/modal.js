@@ -12,14 +12,7 @@ const TicketForm = (props) => {
   const [priority, setPriority] = useState('');
 
   const arrOfUser = [];
-  //usernames.map((userName,id)=>arrOfUser.push(<option key={id} value={id}>{userName}</option>));
-
   const actions = [];
-  // console.log('That what usernames are');
-  // console.log(usernames);
-  // console.log('That is action');
-  // console.log(actions);
-
   usernames.map(name => actions.push({ label: name.username, value: name.login }));
 
   useEffect(() => {
