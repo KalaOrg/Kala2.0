@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
-import { UNSAFE_NavigationContext } from 'react-router';
+import logo from '../pictures/kala.png'
 // import { getHooks } from 'html-webpack-plugin';
 // import render from 'react-dom';
 
@@ -17,7 +17,7 @@ function LoginForm( { setToken }) {
 
   //does loginUser belong outside?? tutorial has it outside.
   const handleSubmit = (e) => {
-    console.log('LOGIN E ', e);
+    console.log('LOGIN ERROR ', e);
     e.preventDefault();   
     fetch('http://localhost:3000/api/login', {
       method: "POST", 
@@ -36,12 +36,17 @@ function LoginForm( { setToken }) {
       //if so, display homepage for user (stretch feature: create local storage that will keep all of the user's info)
     })
     .then(data => {
-      console.log('DATA ', data);
+      console.log('loginPage.js data: ', data);
       // const token = data;
-      setToken(data);
+      if (data.STATUS === true){
+        setToken(data);
+      }
+      else {
+        alert('Please submit valid email and password!');
+      }
     })
     .catch(err => {
-    return next({
+    return ({
      log: `Error fetching data. See console for more details. ${err}`,
      status: 400,
      message: { err: 'Check handleSubmit in loginPage.js' }
@@ -62,6 +67,7 @@ function LoginForm( { setToken }) {
     //   </form>
     // </div>
     <div>
+      <img id='logo' alt='logo' src={logo}/>
       <form onSubmit={handleSubmit} method="POST">
         <p>Email</p>
         <input type="email" onChange={e => setLogin(e.target.value)} />
