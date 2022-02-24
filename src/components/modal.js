@@ -4,7 +4,6 @@ import {Link, withRouter} from 'react-router-dom'
 const TicketForm = (props) => {
   //states
   const [usernames, setUserName] = useState([]);
-  const [enterName, setName] = useState('');
   const [department, setDepartment] = useState(''); //from dropdown
   const [ticketTitle, setTicketTitle] = useState('');
   const [ticketSummary, setTicketSummary] = useState('');
@@ -13,46 +12,42 @@ const TicketForm = (props) => {
 
 
   const arrOfUser = [];
-
-  usernames.map((userName,id)=>arrOfUser.push(<option key={id} value={userName}>{userName}</option>))
-
-  // useEffect(()=>{
-  //   const metaData = {
-  //     method: 'GET',
-  //     headers: {"Content-Type": "application/json"},
-  //   }
-  //   fetch('/api/usernames', metaData)
-  //       .then(data => data.json())
-  //       .then(result => {
-  //         // console.log(result.userNames)
-  //         setUserName([...result.userNames]);
-  //       })
-  //       // axios.get('http://localhost:3000/api/usernames',{
-  //       //   withCredentials: false
-  //       // })
-  //       // .then(result=>{
-  //       //   console.log(result);
-  //       // }).catch(err=>console.log('Cant get data, here is error: ', err ));
-  // });
+  usernames.map((userName,id)=>arrOfUser.push(<option key={id} value={userName}>{userName}</option>));
+  
+  useEffect(()=>{
+    const metaData = {
+      method: 'GET',
+      headers: {"Content-Type": "application/json"},
+    }
+    fetch('/api/usernames', metaData)
+    .then(data => data.json())
+    .then(result => {
+      console.log('results from fetch')
+      console.log(result.userNames)
+      setUserName([...result.userNames]);
+    })
+  },[]);
+  
+  
 
   const submitTicket = (e) => {
     e.preventDefault();
     try{
       const body = {
-        first_name: enterName, 
+        login: enterName, 
         department: department,
         issue_title: ticketTitle,
         issue_summary: ticketSummary,
         priority: priority
       }
       const metaData = {
-        method: 'POST',
+        method: 'POST', 
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(body)
       }
       fetch('/api/add', metaData)
         .then(data => data.json())
-        .then(tickets => console.log(tickets))//** may have to revise based on hook names **
+        .then(tickets => console.log(tickets)).catch(err=>console.log(err));//** may have to revise based on hook names **
     }
     // props.setTickets(tickets)
     catch(err){
@@ -71,10 +66,13 @@ const TicketForm = (props) => {
       <h2>Ticket Entry Form</h2>
       <form onSubmit={submitTicket}>
         <div>
-          <div className="form-group col-md-5">
-            <label htmlFor='enter-name'>Name</label>
+        <div className="form-group col-md-5">
+            <label htmlFor='enter-department'>User name</label>
             <br></br>
-            <input type='text' className="form-control" required value={enterName} onChange={(e => setName(e.target.value))}></input>
+              <select className="form-control" required onChange={(e => setUserName(e.target.value))}>
+                <option value="">Choose a user</option>
+                {arrOfUser}
+              </select>
           </div>
           <br></br>
           <div className="form-group col-md-5">

@@ -48,18 +48,20 @@ ticketController.addTicket = (req, res, next) => {
     date,
   ];
 
-  db.query(query, values)
-    .then((data) => {
-      next();
-    })
-    .catch((err) => {
-      return next({
-        log: `ticketController.addTicket: ERROR: ${err}`,
-        message: {
-          err: 'ticketController.addTicket: ERROR: Check server logs for details',
-        },
-      });
-    });
+  console.log()
+
+  // db.query(query, values)
+  //   .then((data) => {
+  //     next();
+  //   })
+  //   .catch((err) => {
+  //     return next({
+  //       log: `ticketController.addTicket: ERROR: ${err}`,
+  //       message: {
+  //         err: 'ticketController.addTicket: ERROR: Check server logs for details',
+  //       },
+  //     });
+  //   });
 };
 
 ticketController.removeTicket = (req, res, next) => {
