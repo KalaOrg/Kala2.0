@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Ticket from './tickets';
+import { Context } from '../main';
 
 const UserTicketColumn = (props) => {
+  const ID = useContext(Context);
   const [tickets, setTickets] = useState([]);
+
+  let d = JSON.parse(localStorage.getItem('Kala_Token'));
 
   const ticketItems = [];
   for (let i = 0; i < tickets.length; i++) {
@@ -17,15 +21,17 @@ const UserTicketColumn = (props) => {
     );
   }
 
+  //in case of problems use d.user._id || +props.id
 
   const fetchTickets = () => {
+    console.log('LEts see ID ' , ID)
     fetch('/api/filteredtickets',{
       method : 'POST',
       headers: {
       'Content-Type': 'application/json'
       // 'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: JSON.stringify({user_id : 2, status : props.status})
+      body: JSON.stringify({user_id : d.user._id, status : props.status})
     })
       .then((res) => res.json())
       .then((tickets) => {

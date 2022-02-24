@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
-import React, { useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Header from './containers/headerContainer';
 import UserContainer from './containers/userContainer';
@@ -9,10 +9,19 @@ import { createBrowserHistory } from 'history'
 import useToken from './components/useToken.js'
 import TicketForm from './components/modal';
 
+export const Context = createContext('User ID');
 
 const App = () => {
   const newHistory = createBrowserHistory();
   const { token, setToken } = useToken();
+  const [user_id, setID] = useState('');
+
+  useEffect(() => {
+    if (token && token.user) {
+      setID(token.user._id);
+    }
+  }, [token]);
+
 
   if (!token) {
     return (
@@ -24,9 +33,12 @@ const App = () => {
 
   return (
     <div>
-      <Header />
-      <UserContainer />
-      <TicketForm />
+      <Context.Provider value={user_id} >
+        <Header />
+        <UserContainer id={user_id} />
+        <TicketForm />
+      </Context.Provider>
+
     </div>
   )
 }

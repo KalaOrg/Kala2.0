@@ -23,7 +23,6 @@ const TicketForm = (props) => {
     fetch('/api/usernames', metaData)
       .then(data => data.json())
       .then(result => {
-        console.log(result)
         setUserNames([...result.userNames]);
       })
   }, []);
