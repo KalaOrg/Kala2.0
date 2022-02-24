@@ -9,6 +9,7 @@ const TicketEntryButton = () => {
         <button >New Ticket Entry</button>
       </div>
       <div>
+        {/* changed from sign in  */}
         <button >Sign In</button>
       </div>
     </div>
