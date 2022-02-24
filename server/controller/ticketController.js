@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const db = require('../model/ticketModel');
+const db = require('../model/DB');
 
 const ticketController = {};
 
