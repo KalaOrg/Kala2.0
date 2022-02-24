@@ -31,7 +31,7 @@ const UserTicketColumn = (props) => {
       'Content-Type': 'application/json'
       // 'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: JSON.stringify({user_id : d.user._id, status : props.status})
+      body: JSON.stringify({user_id : d.id, status : props.status})
     })
       .then((res) => res.json())
       .then((tickets) => {
