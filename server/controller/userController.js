@@ -33,7 +33,7 @@ userController.getUsers = async (req,res,next) =>{
         res.locals.result = {};
         res.locals.result.STATUS = true;
         res.locals.result.userNames = [];
-        resultData.rows.map(user=>res.locals.result.userNames.push(user.username));
+        resultData.rows.map(user=>res.locals.result.userNames.push({username:user.username, login:user.login}));
         next();
     }
     catch(err){

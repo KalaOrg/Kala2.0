@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
 const Ticket = (props) => {
-  //const { _id, first_name, department, issue_title, issue_summary, status, priority, date } = state.props
-
-  // useEffect(() => {});
 
   const handleDelete = () => {
     console.log('THIS IS THE ID', props.ticketID)
-    fetch('/api/remove', {
+    fetch('/api/removeticket', {
       method: 'DELETE',
       headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify({ _id: props.ticketID }),
+      body: JSON.stringify({ id: props.ticketID }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -24,10 +21,8 @@ const Ticket = (props) => {
     <article>
       <div className='ticketHead'>
         <div className='ticket-title'>
-        <h4>{props.ticket.issue_title}</h4>
         </div>
         <div className='delete-button'>
-          {/* <button class='btn btn-outline-secondary'>🗑 </button> */}
           <button className='delete' onClick={handleDelete}>
             <i className='bi bi-trash'></i>
           </button>
@@ -35,7 +30,7 @@ const Ticket = (props) => {
       </div>
       <div>
         <ul className='ticketDetailList'>
-          {/* {console.log('PROPS:', props)} */}
+          <li className='ticketDetail'>Issue: {props.ticket.issue_title}</li>
           <li className='ticketDetail'>Name: {props.ticket.username}</li>
           <li className='ticketDetail'>
             Summary: {props.ticket.issue_summary}

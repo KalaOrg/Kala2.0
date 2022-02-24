@@ -47,4 +47,7 @@
 .delete {
   border: none;
   border-radius: 5px;
+  position: relative;
+  top: 35px;
+  right: 10px;
 }
