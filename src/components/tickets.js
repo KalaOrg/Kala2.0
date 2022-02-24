@@ -7,10 +7,10 @@ const Ticket = (props) => {
 
   const handleDelete = () => {
     console.log('THIS IS THE ID', props.ticketID)
-    fetch('/api/remove', {
+    fetch('/api/removeticket', {
       method: 'DELETE',
       headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify({ _id: props.ticketID }),
+      body: JSON.stringify({ id: props.ticketID }),
     })
       .then((res) => res.json())
       .then((data) => {
