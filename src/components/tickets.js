@@ -24,7 +24,7 @@ const Ticket = (props) => {
     <article>
       <div className='ticketHead'>
         <div className='ticket-title'>
-          <h4>{props.ticket.issue_title}</h4>
+        <h4>{props.ticket.issue_title}</h4>
         </div>
         <div className='delete-button'>
           {/* <button class='btn btn-outline-secondary'>🗑 </button> */}
@@ -36,7 +36,7 @@ const Ticket = (props) => {
       <div>
         <ul className='ticketDetailList'>
           {/* {console.log('PROPS:', props)} */}
-          <li className='ticketDetail'>Name: {props.ticket.first_name}</li>
+          <li className='ticketDetail'>Name: {props.ticket.username}</li>
           <li className='ticketDetail'>
             Summary: {props.ticket.issue_summary}
           </li>

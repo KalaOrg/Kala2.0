@@ -2,7 +2,9 @@ import ReactDOM from 'react-dom';
 import React, { useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Header from './containers/headerContainer';
-import TicketContainer from './containers/ticketsContainer';
+// import TicketContainer from './containers/ticketsContainer';
+// import TicketForm from './components/modal';
+import UserContainer from './containers/userContainer';
 import TicketForm from './components/modal';
 import './style.css'
 //import login form
@@ -36,6 +38,10 @@ const App = () => {
   return ( 
     <div>
     <Header />
+//     <Routes>
+//       <Route exact path='/' element={<UserContainer/>}></Route>
+//       <Route exact path='/form' element={<TicketForm/>}></Route>
+//     </Routes>
     <LoginForm />
     {/* change to router and add switch*/}
     {/* <BrowserRouter history={newHistory}>

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Ticket from './tickets';
 
-const TicketColumn = (props) => {
+const UserTicketColumn = (props) => {
   const [tickets, setTickets] = useState([]);
 
   const ticketItems = [];
   for (let i = 0; i < tickets.length; i++) {
+    console.log('Are we creating tickets')
     // console.log('TICKETS LENGTH:', tickets.length);
     // console.log('TICKETS:', tickets);
     ticketItems.push(
@@ -33,39 +34,66 @@ const TicketColumn = (props) => {
   // };
 
   const fetchTickets = () => {
-    fetch('/api')
+    console.log('In fetch request')
+    fetch('/api/filteredtickets',{
+      method : 'POST',
+      headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: JSON.stringify({user_id : 2, status : props.status})
+    })
       .then((res) => res.json())
-      .then((tickets) => setTickets(tickets))
+      .then((tickets) => {
+        console.log('WE are getting tickets')
+        console.log(tickets);
+        setTickets([...tickets.filteredTickets])
+      })
       .catch((err) => console.log('Error getting tickets.', err));
   };
 
   useEffect(() => {
+    console.log('In use effect')
     fetchTickets();
     // filterTickets(ticketItems);
   }, []);
 
+  return (
+    <div>
+      <div>
+      {ticketItems.filter((ticket) => ticket.props.ticket.status === 'received')}
+    </div>
+    <div>
+      {ticketItems.filter((ticket) => ticket.props.ticket.status === 'in_progress')}
+    </div>
+    <div>
+      {ticketItems.filter((ticket) => ticket.props.ticket.status === 'completed')}
+    </div>
+    </div>
+  );
+
   //this successfully filters all of the tickets in our ticketItems array into a new array based on its priority
-  const highPriority = ticketItems.filter(
-    (ticket) => ticket.props.ticket.priority === 'high'
+  const received = ticketItems.filter(
+    (ticket) => ticket.props.ticket.status === 'received'
   );
-  const mediumPriority = ticketItems.filter(
-    (ticket) => ticket.props.ticket.priority === 'medium'
+  const inProgress = ticketItems.filter(
+    (ticket) => ticket.props.ticket.status === 'in_progress'
   );
-  const lowPriority = ticketItems.filter(
-    (ticket) => ticket.props.ticket.priority === 'low'
+  const completed = ticketItems.filter(
+    (ticket) => ticket.props.ticket.status === 'completed'
   );
-  // console.log('HIGH:', highPriority);
+  console.log('RECEIVED:',received);
   // console.log('MEDIUM:', mediumPriority);
   // console.log('LOW:', lowPriority);
 
-  if (props.priority === 'high') {
-    return <div id={props.priority}>{highPriority}</div>;
+  if (props.priority === 'received') {
+    return <div id={props.status}>{received}</div>;
   }
-  if (props.priority === 'medium') {
-    return <div id={props.priority}>{mediumPriority}</div>;
+  if (props.priority === 'in_progress') {
+    return <div id={props.status}>{inProgress}</div>;
   }
-  if (props.priority === 'low') {
-    return <div id={props.priority}>{lowPriority}</div>;
+  if (props.priority === 'completed') {
+    return <div id={props.status}>{completed}</div>;
   }
 
   //original return statement with different appraoches to filtering without a conditional return statement
@@ -82,4 +110,4 @@ const TicketColumn = (props) => {
   // );
 };
 
-export default TicketColumn;
+export default UserTicketColumn;
