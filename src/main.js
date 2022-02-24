@@ -46,7 +46,6 @@ const App = () => {
         {/* <Route exact path='/' element={<LoginForm/>}></Route>
       </Switch>
     </BrowserRouter> */} 
-
     </div>
   )
 }
