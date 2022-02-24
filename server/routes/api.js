@@ -2,29 +2,43 @@ const express = require('express');
 const router = express.Router();
 
 const ticketController = require('../controller/ticketController');
+const userController = require('../controller/userController');
 
 router.get('/test', (req, res) => res.json({ msg: 'backend works' }));
 
-router.get('/', ticketController.getTickets, (req, res) => {
-  res.status(200).json(res.locals.tickets);
-});
-
 router.post(
-  '/add',
+  '/addticket',
   ticketController.addTicket,
-  ticketController.getTickets,
+  // ticketController.getTickets,
   (req, res) => {
-    res.status(200).json(res.locals.tickets);
+    res.status(200).json('Ticket added');
   }
 );
+
+//Think how to implement this one ? 
 
 router.delete(
-  '/remove',
+  '/removeticket',
   ticketController.removeTicket,
-  ticketController.getTickets,
+  // ticketController.getTickets,
   (req, res) => {
-    res.status(200).json(res.locals.tickets);
+    return res.status(200).json("Ticket deleted");
   }
 );
+
+
+
+router.post('/login',userController.loginUser, (req,res)=>{
+  return res.status(200).json(res.locals.result);
+});
+
+router.get('/usernames',userController.getUsers,(req,res)=>{
+  return res.status(200).json(res.locals.result);
+});
+
+
+router.post('/filteredtickets', ticketController.getFilteredTickets, (req,res)=>{
+  return res.status(200).json(res.locals.result);
+});
 
 module.exports = router;

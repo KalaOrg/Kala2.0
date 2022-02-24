@@ -1,43 +1,64 @@
-import React, { useEffect, useState } from 'react'
-import {Link, withRouter} from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import Select from 'react-select';
 
 const TicketForm = (props) => {
   //states
-  const [enterName, setName] = useState('');
+  const [usernames, setUserNames] = useState([]);
+  const [name, setName] = useState('');
   const [department, setDepartment] = useState(''); //from dropdown
   const [ticketTitle, setTicketTitle] = useState('');
   const [ticketSummary, setTicketSummary] = useState('');
-  const [priority, setPriority] = useState('')
+  const [priority, setPriority] = useState('');
+
+  const arrOfUser = [];
+  const actions = [];
+  usernames.map(name => actions.push({ label: name.username, value: name.login }));
+
+  useEffect(() => {
+    const metaData = {
+      method: 'GET',
+      headers: { "Content-Type": "application/json" },
+    }
+    fetch('/api/usernames', metaData)
+      .then(data => data.json())
+      .then(result => {
+        console.log(result)
+        setUserNames([...result.userNames]);
+      })
+  }, []);
+
+  const onChangeCheck = (e) => {
+    setName(e.value);
+  }
 
   const submitTicket = (e) => {
+    console.log('Comming in submit');
     e.preventDefault();
-    try{
-      const body = {
-        first_name: enterName, 
-        department: department,
-        issue_title: ticketTitle,
-        issue_summary: ticketSummary,
-        priority: priority
-      }
-      const metaData = {
-        method: 'POST',
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(body)
-      }
-      fetch('/api/add', metaData)
-        .then(data => data.json())
-        .then(tickets => console.log(tickets))//** may have to revise based on hook names **
+    const body = {
+      login: name,
+      department_id: department,
+      issue_title: ticketTitle,
+      issue_summary: ticketSummary,
+      priority_id: priority,
+      status_id : 1
     }
-    // props.setTickets(tickets)
-    catch(err){
-      console.log(err.message);
+    const metaData = {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
     }
+
+    fetch('/api/addticket', metaData)
+      .then(data => data.json())
+      .then(tickets => console.log(tickets)).catch(err => console.log(err));//** may have to revise based on hook names **
+    setUserNames([]);
     setName('');
     setDepartment('');
     setTicketTitle('');
     setTicketSummary('');
     setPriority('');
-    location.assign('/')
+    //location.assign('/')
   }
 
   return (
@@ -45,21 +66,21 @@ const TicketForm = (props) => {
       <h2>Ticket Entry Form</h2>
       <form onSubmit={submitTicket}>
         <div>
-          <div className="form-group col-md-5">
-            <label htmlFor='enter-name'>Name</label>
+          <div className=''>
+            <label htmlFor='enter-department'>User name</label>
             <br></br>
-            <input type='text' className="form-control" required value={enterName} onChange={(e => setName(e.target.value))}></input>
+            <Select options={actions} onChange={onChangeCheck} />
           </div>
           <br></br>
           <div className="form-group col-md-5">
             <label htmlFor='enter-department'>Department</label>
             <br></br>
-              <select className="form-control" required onChange={(e => setDepartment(e.target.value))}>
-                <option value="">Choose a department</option>
-                <option value='2'>Software Engineering</option>
-                <option value='3'>Facilities</option>
-                <option value='1'>Marketing</option>
-              </select>
+            <select className="form-control" required onChange={(e => setDepartment(e.target.value))}>
+              <option value="">Choose a department</option>
+              <option value='2'>Software Engineering</option>
+              <option value='3'>Facilities</option>
+              <option value='1'>Marketing</option>
+            </select>
           </div>
         </div>
         <br></br>
@@ -79,15 +100,15 @@ const TicketForm = (props) => {
         <div className="form-group col-md-5">
           <label htmlFor='enter-priority'>Priority </label>
           <br></br>
-            <select className='form-control' required onChange={(e => setPriority(e.target.value))}>
-              <option value="">Choose a priority</option>
-              <option value='1'>Low</option>
-              <option value='2'>Medium</option>
-              <option value='3'>High</option>
-            </select>
+          <select className='form-control' required onChange={(e => setPriority(e.target.value))}>
+            <option value="">Choose a priority</option>
+            <option value='1'>Low</option>
+            <option value='2'>Medium</option>
+            <option value='3'>High</option>
+          </select>
         </div>
         <div id='submit-ticket'>
-          <button id='submit-ticket-button'className='btn btn-success'>Create ticket</button>
+          <button id='submit-ticket-button' className='btn btn-success'>Create ticket</button>
         </div>
       </form>
     </div>

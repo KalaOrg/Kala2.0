@@ -1,20 +1,32 @@
 import ReactDOM from 'react-dom';
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import React, { useState } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Header from './containers/headerContainer';
-import TicketContainer from './containers/ticketsContainer';
-import TicketForm from './components/modal';
+import UserContainer from './containers/userContainer';
 import './style.css'
+import LoginForm from './components/loginPage';
+import { createBrowserHistory } from 'history'
+import useToken from './components/useToken.js'
+import TicketForm from './components/modal';
 
 
 const App = () => {
-  return ( 
+  const newHistory = createBrowserHistory();
+  const { token, setToken } = useToken();
+
+  if (!token || token.STATUS === false) {
+    return (
+      <div>
+        <LoginForm setToken={setToken} />
+      </div>
+    )
+  }
+
+  return (
     <div>
-    <Header />
-    <Routes>
-      <Route exact path='/' element={<TicketContainer/>}></Route>
-      <Route exact path='/form' element={<TicketForm/>}></Route>
-    </Routes>
+      <Header setToken={setToken}/>
+      <UserContainer />
+      <TicketForm />
     </div>
   )
 }
