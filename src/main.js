@@ -40,7 +40,7 @@ const App = () => {
   const newHistory = createBrowserHistory();
   const [token, setToken] = useState();
 
-  if(token) {
+  if(!token) {
     return <LoginForm setToken={setToken} />
   }
 
