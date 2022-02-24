@@ -1,11 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
-import logo from '../pictures/kala.png'
+import logo from '../pictures/kala.png';
+import styled from 'styled-components'
 
-function LoginForm( { setToken }) {
+const Login = styled.div`
+  margin: auto;
+  padding: 10px;
+  padding-bottom: 15px;
+  display: flex;
+  border-radius: 5px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20vh;
+  background-color: #ACC4B0;
+  max-width: 20%;
+  min-width: 200px;
+`;
+
+const ButtonStyle = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-self: center;
+  justify-content: center;
+  margin-top: 10px;
+`;
+
+function LoginForm( { setToken } ) {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
-
 
   const handleSubmit = (e) => {
     console.log('LOGIN ERROR ', e);
@@ -38,22 +62,22 @@ function LoginForm( { setToken }) {
      status: 400,
      message: { err: 'Check handleSubmit in loginPage.js' }
     }) 
-   }); //if field is bad or cannot get data
-
+   });
   }
+
   return (
-    <div>
+    <Login>
       <img id='logo' alt='logo' src={logo}/>
       <form onSubmit={handleSubmit} method="POST">
         <p>Email</p>
         <input type="email" onChange={e => setLogin(e.target.value)} />
         <p>Password</p>
         <input type="password" name="password" onChange={e => setPassword(e.target.value)}/>
-        <div>
-        <button type="submit">Log In</button>
-        </div>
+        <ButtonStyle>
+        <button type="submit" className="btn btn-outline-light">Log In</button>
+        </ButtonStyle>
       </form>
-    </div>
+    </Login>
     );
       
 };
