@@ -45,15 +45,15 @@ const UserTicketColumn = (props) => {
     })
       .then((res) => res.json())
       .then((tickets) => {
-        console.log('WE are getting tickets')
-        console.log(tickets);
+        // console.log('WE are getting tickets')
+        // console.log(tickets);
         setTickets([...tickets.filteredTickets])
       })
       .catch((err) => console.log('Error getting tickets.', err));
   };
 
   useEffect(() => {
-    console.log('In use effect')
+    // console.log('In use effect')
     fetchTickets();
     // filterTickets(ticketItems);
   }, []);
@@ -82,7 +82,7 @@ const UserTicketColumn = (props) => {
   const completed = ticketItems.filter(
     (ticket) => ticket.props.ticket.status === 'completed'
   );
-  console.log('RECEIVED:',received);
+  // console.log('RECEIVED:',received);
   // console.log('MEDIUM:', mediumPriority);
   // console.log('LOW:', lowPriority);
 

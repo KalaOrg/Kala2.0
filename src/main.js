@@ -10,6 +10,7 @@ import './style.css'
 //import login form
 import LoginForm from './components/loginPage';
 import { createBrowserHistory } from 'history'
+import useToken from './components/useToken.js'
 
 
 
@@ -29,6 +30,7 @@ import { createBrowserHistory } from 'history'
 
 const App = () => {
 
+
 //   return ( 
 //     <div>
 //     <Header />
@@ -38,17 +40,24 @@ const App = () => {
 //     </Routes>
 
   const newHistory = createBrowserHistory();
-  const [token, setToken] = useState();
+  // const [token, setToken] = useState();
 
-  if(token) {
-    return <LoginForm setToken={setToken} />
+  const { token, setToken } = useToken();
+  console.log('main.js token: ',token)
+
+  if(!token) { 
+    return (
+    <div>
+      <LoginForm setToken={setToken} />
+    </div>
+    )
   }
 
   return ( 
     <div>
       {/* <TicketForm/> */}
+      <Header />
     <UserContainer/>
-    <Header />
 {/* //     <Routes>
 //       <Route exact path='/' element={<UserContainer/>}></Route>
 //       <Route exact path='/form' element={<TicketForm/>}></Route>
