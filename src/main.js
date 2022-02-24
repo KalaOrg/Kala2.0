@@ -8,9 +8,13 @@ import './style.css'
 
 
 const App = () => {
-  return (
+  return ( 
     <div>
-      <TicketForm />
+    <Header />
+    <Routes>
+      <Route exact path='/' element={<TicketContainer/>}></Route>
+      <Route exact path='/form' element={<TicketForm/>}></Route>
+    </Routes>
     </div>
   )
 }
