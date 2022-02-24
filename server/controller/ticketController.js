@@ -10,8 +10,10 @@ ticketController.addTicket = async (req, res, next) => {
   try{
     const { login, department_id, issue_title, issue_summary, status_id, priority_id } = req.body;
     const date = new Date();
-    const query = 'INSERT INTO ticket_table (user_id, department_id, issue_title, issue_summary, status_id, priority_id, date) VALUES ((SELECT users._id FROM users WHERE users.login = $1), $2,$3,$4,$5,$6,$7)';
-    const resultInsertion = await db.query(query,[login,department_id,issue_title,issue_summary,status_id, priority_id,date]);
+    const resultId = await db.query(`SELECT users._id FROM users WHERE users.login = '${login}'`);
+    console.log(resultId.rows)
+    const query = 'INSERT INTO ticket_table (user_id, department_id, issue_title, issue_summary, status_id, priority_id, date) VALUES ($1, $2,$3,$4,$5,$6,$7)';
+    const resultInsertion = await db.query(query,[resultId.rows[0]._id,department_id,issue_title,issue_summary,status_id, priority_id,date]);
     return next();
   }
   catch (err){

@@ -6,9 +6,6 @@ const UserTicketColumn = (props) => {
 
   const ticketItems = [];
   for (let i = 0; i < tickets.length; i++) {
-    console.log('Are we creating tickets')
-    // console.log('TICKETS LENGTH:', tickets.length);
-    // console.log('TICKETS:', tickets);
     ticketItems.push(
       <Ticket
         key={i}
@@ -18,23 +15,10 @@ const UserTicketColumn = (props) => {
         tickets={tickets}
       />
     );
-    // console.log('TICKETS[i]:', tickets[i]);
-    // console.log('TICKET ITEMS:', ticketItems);
   }
 
-  //  const filteredTickets = ticketItems.filter(
-  //    (ticket) => ticket.priority === props.priority
-  //  );
-
-  // const filterTickets = (array) => {
-  //   const filteredTickets = [];
-  //   array.filter((ticket) => props.priority === ticket.priority);
-  //   console.log('FILTERED TICKETS:', filteredTickets);
-  //   return filteredTickets;
-  // };
 
   const fetchTickets = () => {
-    console.log('In fetch request')
     fetch('/api/filteredtickets',{
       method : 'POST',
       headers: {
@@ -45,17 +29,13 @@ const UserTicketColumn = (props) => {
     })
       .then((res) => res.json())
       .then((tickets) => {
-        console.log('WE are getting tickets')
-        console.log(tickets);
         setTickets([...tickets.filteredTickets])
       })
       .catch((err) => console.log('Error getting tickets.', err));
   };
 
   useEffect(() => {
-    console.log('In use effect')
     fetchTickets();
-    // filterTickets(ticketItems);
   }, []);
 
   return (
