@@ -9,34 +9,38 @@ import UserTicketColumn from "../components/userTicketColumn";
 
 */
 
-const Columns = () => (
-  <div
-    style={{
-      display: "grid",
-      gridTemplateColumns: "repeat(3, 1fr)",
-      gridGap: 20,
-    }}
-  >
-    <div>RECEIVED</div>
-    <div>IN PROGRESS</div>
-    <div>COMPLETED</div>
-  </div>
-);
+
 
 const UserContainer = (props) => {
   const id = localStorage.getItem("id");
   return (
+  
+    <div>
+      <div>
+         <select className='form-control' required onChange={(e => setPriority(e.target.value))}>
+          <option value="">Priority</option>
+          <option value='1'>Low</option>
+          <option value='2'>Medium</option>
+          <option value='3'>High</option>
+         </select>
+      </div>
+              
+    
     <div className="ticket-list">
       <div className="columns">
         <h3>Received</h3>
         <UserTicketColumn id={id} status={1} />
       </div>
       <div className="columns">
+      <h3>In Progress</h3>
         <UserTicketColumn id={id} status={2} />
       </div>
       <div className="columns">
+      <h3>Finished</h3>
         <UserTicketColumn id={id} status={3} />
       </div>
+    </div>
+
     </div>
   );
 };
