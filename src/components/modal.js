@@ -9,6 +9,31 @@ const TicketForm = (props) => {
   const [ticketSummary, setTicketSummary] = useState('');
   const [priority, setPriority] = useState('');
 
+
+
+  const arrOfUser = [];
+
+  usernames.map((userName,id)=>arrOfUser.push(<option key={id} value={userName}>{userName}</option>))
+
+  useEffect(()=>{
+    const metaData = {
+      method: 'GET',
+      headers: {"Content-Type": "application/json"},
+    }
+    fetch('/api/usernames', metaData)
+        .then(data => data.json())
+        .then(result => {
+          // console.log(result.userNames)
+          setUserName([...result.userNames]);
+        })
+        // axios.get('http://localhost:3000/api/usernames',{
+        //   withCredentials: false
+        // })
+        // .then(result=>{
+        //   console.log(result);
+        // }).catch(err=>console.log('Cant get data, here is error: ', err ));
+  });
+
   const submitTicket = (e) => {
     e.preventDefault();
     try{
