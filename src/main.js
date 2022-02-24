@@ -26,6 +26,7 @@ const App = () => {
   if (!token) {
     return (
       <div>
+        <img id='logo' alt='logo' src={logo}/>
         <LoginForm setToken={setToken} />
       </div>
     )
