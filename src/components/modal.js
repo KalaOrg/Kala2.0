@@ -12,6 +12,7 @@ const TicketForm = (props) => {
   const [ticketSummary, setTicketSummary] = useState('');
   const [priority, setPriority] = useState('');
 
+
   const arrOfUser = [];
 
   usernames.map((userName,id)=>arrOfUser.push(<option key={id} value={userName}>{userName}</option>))

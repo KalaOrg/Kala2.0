@@ -10,6 +10,7 @@ router.get('/test', (req, res) => res.json({ msg: 'backend works' }));
 //   res.status(200).json(res.locals.tickets);
 // });
 
+
 router.post(
   '/addticket',
   ticketController.addTicket,
@@ -30,6 +31,7 @@ router.delete(
   }
 );
 
+
 router.post('/login',userController.loginUser, (req,res)=>{
   return res.status(200).json(res.locals.result);
 });
@@ -37,6 +39,7 @@ router.post('/login',userController.loginUser, (req,res)=>{
 router.get('/usernames',userController.getUsers,(req,res)=>{
   return res.status(200).json(res.locals.result);
 });
+
 
 router.get('/filteredtickets', ticketController.getFilteredTickets, (req,res)=>{
   return res.status(200).json(res.locals.result);
