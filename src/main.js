@@ -14,7 +14,7 @@ const App = () => {
   const newHistory = createBrowserHistory();
   const { token, setToken } = useToken();
 
-  if (!token) {
+  if (!token || token.STATUS === false) {
     return (
       <div>
         <LoginForm setToken={setToken} />
@@ -24,7 +24,7 @@ const App = () => {
 
   return (
     <div>
-      <Header />
+      <Header setToken={setToken}/>
       <UserContainer />
       <TicketForm />
     </div>
